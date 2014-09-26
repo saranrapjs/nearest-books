@@ -70,7 +70,7 @@
 		 			open,
 		 			closed;
 				for (var i = arguments.length - 1; i >= 0; i--) {
-					if (arguments[i] !== false) { // if there is at least one branch with availability
+					if (arguments[i] !== false && typeof arguments[i] !== 'undefined') { // if there is at least one branch with availability
 						self.queue[i].title = arguments[i].title
 						comparables.push(arguments[i])
 					}
@@ -294,6 +294,8 @@ function fetchLocationsFromBook(book) {
 			}
 			defer.resolve(nearest);
 		})				
+	} else {
+		defer.resolve();
 	}
 	return defer;
 }
