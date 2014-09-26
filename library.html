@@ -1,0 +1,4067 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Hours &amp; Locations | Brooklyn Public Library</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="/sites/default/files/bpl_favicon.ico" type="image/x-icon" />
+  <link type="text/css" rel="stylesheet" media="all" href="/sites/default/files/css/css_f8cb0691286d0fdfc1ae68c910905990.css" />
+<link type="text/css" rel="stylesheet" media="print" href="/sites/default/files/css/css_7ca44de48b85edc2b7c3af07372fb8c3.css" />
+<!--[if IE]>
+<link type="text/css" rel="stylesheet" media="all" href="/sites/all/themes/bpl/css/ie.css?D" />
+<![endif]-->
+<!--[if lte IE 6]>
+<link type="text/css" rel="stylesheet" media="all" href="/sites/all/themes/bpl/css/ie6.css?D" />
+<![endif]-->
+  <style type="text/css">.day7 {background:#FAFAB6; font-weight:bold}</style>
+
+
+<!--
+
+For converting a Library hours scrape into an hours.json
+
+-->
+
+
+
+<script src="http://code.jquery.com/jquery-2.1.1.js"></script>
+<script>
+	window.onload = function() {
+		function timeto24(time_string) {
+			var is_pm = /PM/.test(time_string),
+				time = parseInt(time_string.replace(":",""));
+			if (is_pm === true) {
+				time += 1200;
+			}
+			return time;
+		}
+		var $h3s = $("h3"),
+			$tables = $("table"),
+			days = {
+				'Mon' : 1,
+				'Tue' : 2,
+				'Wed' : 3,
+				'Thu' : 4,
+				'Fri' : 5,
+				'Sat' : 6,
+				'Sun' : 0,
+			},
+			libraries = {}
+		$tables.each(function(i,$table) {
+			var $trs = $(this).find('tr'),
+				branch_name = $h3s.eq(i).text(),
+				hours = {};
+			$trs.each(function(j, $tr){
+				var day = $(this).find('.day').text(),
+					day_n = days[day],
+					open,
+					closed,
+					$hours = $(this).find('.date-display-single');
+
+				if ($hours.length) { // open on this day
+					// hours[day_n] = true;
+					open = timeto24($hours.eq(0).text());
+					closed = timeto24($hours.eq(1).text());
+					hours[day_n] = [open,closed]
+				} else { // closed on this day
+					hours[day_n] = false;
+				}
+
+
+			})
+			// console.log(branch_name, hours)
+			if (/Central Library Learning Center/.test(branch_name) === false) {
+				libraries[branch_name] = hours;				
+			} else {
+				// console.log(branch_name)
+			}
+		})
+		console.log(JSON.stringify(libraries))
+	}
+</script>
+
+
+
+
+
+</head>
+<body class="page not-front not-logged-in page-locations section-locations one-sidebar sidebar-first page-views">
+
+<a name="top"></a>
+      <div id="skip-link"><a href="#main-menu">Jump to Navigation</a></div>
+  
+  <div id="page-wrapper"><div id="page">
+  
+
+    <div id="header"><div class="section clearfix">
+
+              <a href="/" title="Home" rel="home" id="logo"><img src="/sites/default/files/bpl_logo.png" alt="Brooklyn Public Library" /></a>
+      
+      
+      
+	  	<div class="region region-search">
+
+		  <div id="block-search-0" class="block block-search first last region-odd odd region-count-1 count-3">
+		  
+			  <div class="content">
+				<form action="/bpl-search/" id="supersearch" name="supersearch">
+					<div>
+						<div class="container-inline">
+							
+							<div class="form-item">
+
+							
+							<input type="hidden" name="ss_type" id="loc" value="supersearch" />
+							<label for="ss_terms" class="ss_lbl">Enter your search terms</label>
+							<input type="text" name="ss_terms" id="ss_terms" value="Find books, movies, music and more." /><input type="submit" value="Search" class="searchbtn" />
+							<div class="ss_options">
+								<input type="radio" id="catalog" value="catalog" name="ss_scope" checked="checked"><label for="catalog" class="inline">Catalog</label>&nbsp;
+								<input type="radio" id="bplweb" value="bplweb" name="ss_scope"><label for="bplweb" class="inline">BPL Website</label>
+							</div>
+							
+						  
+							</div>
+
+						</div>
+					</div>
+				</form>
+			  </div>
+
+		  </div> <!-- /.block -->
+		</div><!-- /.region -->
+
+    </div></div> <!-- /.section, /#header -->
+
+    <div id="main-wrapper"><div id="main" class="clearfix with-navigation">
+
+	
+      <div id="content" class="column"><div class="section">
+	  
+	  			
+		
+
+		
+
+        		
+		
+
+        
+        <div class="breadcrumb"><a href="/">Home</a> › Hours &amp; Locations</div> 
+        		
+		<h1 class='title'>Hours &amp; Locations</h1>		
+		                        
+        
+        <div id="content-area">
+
+		  		
+
+          <div class="views_view view view-branch-hours-locations view-id-branch_hours_locations view-display-id-page_2 view-dom-id-1">
+  
+      <div class="view-header">
+      <div class="sidebox"><h6>I'm Looking For...</h6><ul><li>A <a data-cke-saved-href="/map/" href="/map/">map of library locations</a></li><li><a data-cke-saved-href="/locations/open-early/" href="/locations/open-early/">Locations open this morning</a></li><li><a data-cke-saved-href="/locations/open-late/" href="/locations/open-late/">Locations open tonight</a></li><li>Locations open on <a data-cke-saved-href="/locations/saturday/" href="/locations/saturday/">Saturdays</a> and <a data-cke-saved-href="/locations/sunday/" href="/locations/sunday/">Sundays</a></li><li>A <a data-cke-saved-href="/only-bpl/adult-literacy#learncenter" href="/only-bpl/adult-literacy#learncenter">Learning Center</a></li><li><a data-cke-saved-href="/locations/bookdrop/" href="/locations/bookdrop/">Off-hour bookdrops</a></li></ul></div><h6>Everyone in Brooklyn Has a Library</h6><p>BPL consists of our landmarked Central Library, a Business Library, and 58 neighborhood libraries. Eighteen libraries are historic Carnegie Buildings. BPL also serves adult learners through five learning centers.</p><p>Before visiting a library please check our <a data-cke-saved-href="/locations/closed" href="/locations/closed">Closings and Renovations</a> page.</p><p><br /></p>    </div>
+  
+  
+  
+      <div class="view-content">
+        <h3><a href="/locations/arlington"><strong>Arlington Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="branch-closed">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">1:00 PM</span> - <span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"><div class='closing_alert'>Temporary Closing</div></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">203 Arlington Ave. at Warwick St.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11207</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-277-6105</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/bay-ridge"><strong>Bay Ridge Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">7223 Ridge Blvd. at 73rd St.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11209</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-748-5709</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/bedford-learning-center"><strong>Bedford Learning Center</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">1:00 PM</span> - <span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">2:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">496 Franklin Avenue</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11238</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-623-2134</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-partial'>Partially accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/bedford"><strong>Bedford Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">1:00 PM</span> - <span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">496 Franklin Avenue</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11238</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-623-0012</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/borough-park"><strong>Borough Park Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">1265 43rd St. at 13th Ave.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11219</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-437-4085</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/brighton-beach"><strong>Brighton Beach Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">16 Brighton First Rd. at Brighton Beach Ave.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11235</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-946-2917</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/brooklyn-heights"><strong>Brooklyn Heights Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">8:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">1:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">8:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">1:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">8:00 AM</span> - <span class="date-display-single">1:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">8:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">1:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">8:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">1:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">9:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">1:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">280 Cadman Plaza West at Tillary St.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11201</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-623-7100</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/brower-park"><strong>Brower Park Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">1:00 PM</span> - <span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">725 St. Marks Ave. at Nostrand Ave.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11216</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-773-7208</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/brownsville"><strong>Brownsville Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">61 Glenmore Ave. at Watkins St.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11212</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-498-9721</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/bushwick"><strong>Bushwick Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">340 Bushwick Ave. at Seigel St.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11206</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-602-1348</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/business"><strong>Business &amp; Career Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">8:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">1:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">8:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">1:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">8:00 AM</span> - <span class="date-display-single">1:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">8:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">1:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">8:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">1:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">9:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">1:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">280 Cadman Plaza W. at Tillary St.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11201</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-623-7000</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/canarsie"><strong>Canarsie Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">1:00 PM</span> - <span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">1580 Rockaway Pkwy. at Ave. J</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11236</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-257-6547</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-partial'>Partially accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/carroll-gardens"><strong>Carroll Gardens Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">1:00 PM</span> - <span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">396 Clinton St. @ Union St.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11231</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-596-6972</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-partial'>Partially accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/central"><strong>Central Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">9:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">9:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">9:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">9:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">9:00 AM</span> - <span class="date-display-single">9:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">9:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">9:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">10 Grand Army Plaza</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11238</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-230-2100</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/central-learning-center"><strong>Central Library Learning Center</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">2:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">10 Grand Army Plaza</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11238</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-230-2191</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-partial'>Partially accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/clarendon"><strong>Clarendon Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">2035 Nostrand Ave.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11210</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-421-1159</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/clinton-hill"><strong>Clinton Hill Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">1:00 PM</span> - <span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">380 Washington Ave. at Lafayette Ave.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11238</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-398-8713</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/coney-island"><strong>Coney Island Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">1:00 PM</span> - <span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">1901 Mermaid Ave. (Near W. 19th St.)</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11224</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718.265.3220</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/cortelyou"><strong>Cortelyou Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">1:00 PM</span> - <span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">1305 Cortelyou Rd. at Argyle Rd.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11226</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-693-7763</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/crown-heights"><strong>Crown Heights Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">560 New York Ave. at Maple St.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11225</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-773-1180</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/cypress-hills"><strong>Cypress Hills Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">1197 Sutter Ave. at Crystal St.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11208</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-277-6004</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/dekalb"><strong>DeKalb Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">1:00 PM</span> - <span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">790 Bushwick Ave. at DeKalb Ave.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11221</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-455-3898</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/dyker"><strong>Dyker Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">8202 13th Ave. (@ 82nd St.)</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11228</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-748-6261</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/east-flatbush"><strong>East Flatbush Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">9612 Church Ave. at. Rockaway Pkwy.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11212</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-922-0931</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/eastern-parkway-learning-center"><strong>Eastern Parkway Learning Center</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">2:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">1044 Eastern Parkway - 2nd Floor</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11213</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-778-9330</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-partial'>Partially accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/eastern-parkway"><strong>Eastern Parkway Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">1044 Eastern Pkwy. at Schenectady Ave.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11213</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-953-4225</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/flatbush-learning-center"><strong>Flatbush Learning Center</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">2:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">22 Linden Blvd. at Flatbush Ave.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11226</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-856-2631</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-partial'>Partially accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/flatbush"><strong>Flatbush Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">22 Linden Blvd. at Flatbush Ave.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11226</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-856-0813</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/flatlands"><strong>Flatlands Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">2065 Flatbush Ave. at Ave. P</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11234</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-253-4409</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/fort-hamilton"><strong>Fort Hamilton Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">9424 Fourth Ave.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11209</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-748-6919</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/gerritsen-beach"><strong>Gerritsen Beach Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">2808 Gerritsen Ave. (Bartlett Place)</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11229</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-368-1435</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/gravesend"><strong>Gravesend Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">303 Ave. X at West. 2nd St.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11223</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-382-5792</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/greenpoint"><strong>Greenpoint Library  </strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">1:00 PM</span> - <span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">107 Norman Ave. at Leonard St.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11222</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-349-8504</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/highlawn"><strong>Highlawn Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">1:00 PM</span> - <span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">1664 W. 13th St. at Kings Highway</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11223</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-234-7208</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/homecrest"><strong>Homecrest Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">2525 Coney Island Ave. at Ave. V</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11223</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-382-5924</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/jamaica-bay"><strong>Jamaica Bay Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">1:00 PM</span> - <span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">9727 Seaview Ave. at E. 98th St. near Rockaway Pkwy.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11236</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-241-3571</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/kensington"><strong>Kensington Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">4207 18th Avenue</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11218</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-436-0545</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/kings-bay"><strong>Kings Bay Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">1:00 PM</span> - <span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">3650 Nostrand Ave. (near Ave. W)</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11229</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-368-1709</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/kings-highway"><strong>Kings Highway Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">2115 Ocean Ave. (nr. Kings Highway)</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11229</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-375-3037</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/leonard"><strong>Leonard Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">81 Devoe St. at Leonard St.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11211</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-486-3365</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-none'>Not wheelchair accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/macon"><strong>Macon Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">361 Lewis Ave. at Macon St.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11233</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-573-5606</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/mapleton"><strong>Mapleton Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">1702 60th Street</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11204</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-256-2117</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/marcy"><strong>Marcy Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">8:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">1:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">8:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">1:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">8:00 AM</span> - <span class="date-display-single">1:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">8:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">1:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">8:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">1:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">9:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">1:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">617 DeKalb Ave. at Nostrand Ave.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11216</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-935-0032</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/mckinley-park"><strong>McKinley Park Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">1:00 PM</span> - <span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">6802 Fort Hamilton Pkwy (at 68th St.)</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11219</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-748-8001</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/midwood"><strong>Midwood Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">975 East 16th St. at Avenue J</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11230</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-252-0967</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/mill-basin"><strong>Mill Basin Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">1:00 PM</span> - <span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">2385 Ralph Ave (near Ave N)</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11234</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-241-3973</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/new-lots-learning-center"><strong>New Lots Learning Center</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">1:00 PM</span> - <span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">2:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">665 New Lots Ave. at Barbey St.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11207</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718.257.0260</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/new-lots"><strong>New Lots Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">1:00 PM</span> - <span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">665 New Lots Ave. at Barbey St.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11207</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-649-0311</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/new-utrecht"><strong>New Utrecht Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">1:00 PM</span> - <span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">1743 86th St. at Bay 17th St.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11214</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-236-4086</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/pacific"><strong>Pacific Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">1:00 PM</span> - <span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">25 Fourth Ave. at Pacific St.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11217</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-638-1531</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-none'>Not wheelchair accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/paerdegat"><strong>Paerdegat Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">1:00 PM</span> - <span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">850 E. 59th St. at Paerdegat Ave. South</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11234</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-241-3994</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/park-slope"><strong>Park Slope Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">431 6th Ave. at 9th St.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11215</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-832-1853</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-partial'>Partially accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/red-hook"><strong>Red Hook Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">7 Wolcott St. at Dwight St.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11231</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-935-0203</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/rugby"><strong>Rugby Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">1000 Utica Ave. (Near Tilden Ave.)</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11203</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-566-0054</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/ryder"><strong>Ryder Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">5902 23rd Ave. (bet. 23rd Ave. at 59th St.)</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11204</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-331-2962</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/saratoga"><strong>Saratoga Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">8 Thomas S. Boyland St. at &quot;Macon St.&quot;</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11233</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-573-5224</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/sheepshead-bay"><strong>Sheepshead Bay Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">1:00 PM</span> - <span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">2636 E.14th St. at Ave. Z</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11235</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-368-1815</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-partial'>Partially accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/spring-creek"><strong>Spring Creek Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">1:00 PM</span> - <span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">12143 Flatlands Ave. at New Jersey Ave.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11207</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-257-6571</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/stone-avenue"><strong>Stone Avenue Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">581 Mother Gaston Boulevard</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11212</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-485-8347</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/sunset-park"><strong>Sunset Park Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">5108 4th Ave. at 51st St.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11220</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-567-2806</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-partial'>Partially accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/ulmer-park"><strong>Ulmer Park Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">2602 Bath Ave at 26th Ave</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11214</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-265-3443</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/walt-whitman"><strong>Walt Whitman Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">1:00 PM</span> - <span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">93 Saint Edwards St. (between Myrtle and Park Avenues)</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11205</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-935-0244</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/washington-irving"><strong>Washington Irving Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">360 Irving Ave. (at Woodbine St.)</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11237</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-628-8378</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/williamsburgh"><strong>Williamsburgh Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">1:00 PM</span>&nbsp;-&nbsp;<span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">10:00 AM</span> - <span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td>closed</td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">240 Division Ave. at Marcy Ave.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11211</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-302-3485</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-full'>Fully accessible</div></span>
+  </div>
+  </div>
+  <h3><a href="/locations/windsor-terrace"><strong>Windsor Terrace Library</strong>
+</a></h3>
+  <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-markup">
+                <span class="field-content">	<table id="hours" class="">
+	<tr class="day1">
+	<td class="day">Mon</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day2">
+	<td class="day">Tue</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day3">
+	<td class="day">Wed</td>
+	<td><span class="date-display-single">1:00 PM</span> - <span class="date-display-single">8:00 PM</span></td>
+	</tr>
+	<tr class="day4">
+	<td class="day">Thu</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day5">
+	<td class="day">Fri</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">6:00 PM</span></td>
+	</tr>
+	<tr class="day6">
+	<td class="day">Sat</td>
+	<td><span class="date-display-single">10:00 AM</span>&nbsp;-&nbsp;<span class="date-display-single">5:00 PM</span></td>
+	</tr>
+	<tr class="day7">
+	<td class="day">Sun</td>
+	<td>closed</td>
+	</tr>
+	</table></span>
+  </div>
+  
+  <div class="views-field-phpcode-7">
+                <span class="field-content"></span>
+  </div>
+  
+  <div class="views-field-field-branch-address-value">
+                <span class="field-content">160 E. 5th St. at Ft. Hamilton Pkwy.</span>
+  </div>
+  
+  <div class="views-field-field-branch-zip-value">
+                <span class="field-content">Brooklyn, NY
+11218</span>
+  </div>
+  
+  <div class="views-field-field-branch-phone-value">
+                <span class="field-content">718-686-9707</span>
+  </div>
+  
+  <div class="views-field-phpcode-8">
+                <span class="field-content"><div class='wheelchair-access access-partial'>Partially accessible</div></span>
+  </div>
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div><!-- /.view -->
+
+
+
+		        </div>
+		
+
+        
+        
+      </div></div> <!-- /.section, /#content -->
+
+
+      <a name="main-menu"></a>
+      <div class="region region-sidebar-first column sidebar"><div class="section">
+  <div id="block-menu-primary-links" class="block block-menu first region-odd odd region-count-1 count-1">
+  
+  <div class="content">
+    <ul class="menu"><li class="leaf first"><a href="http://brooklyn.bibliocommons.com/dashboard/user_dashboard" title="">My BPL</a></li>
+<li class="leaf"><a href="/borrowing-materials" title="
+">Get a Library Card</a></li>
+<li class="leaf"><a href="http://brooklyn.bibliocommons.com" title="">Library Catalog</a></li>
+<li class="leaf"><a href="/eresources" title="
+">Articles &amp; Databases</a></li>
+<li class="leaf"><a href="/e-books-and-more" title="">E-Books and More</a></li>
+<li class="collapsed"><a href="/brooklyncollection" title="Brooklyn Collection">Brooklyn Collection</a></li>
+<li class="leaf"><a href="http://bklyn.newspapers.com/" title="">Brooklyn Newsstand</a></li>
+<li class="leaf"><a href="/ask-librarian" title="Ask a Librarian">Ask a Librarian</a></li>
+<li class="collapsed"><a href="/kids-teens" title="Kids &amp; Teens">Kids &amp; Teens</a></li>
+<li class="collapsed"><a href="/parents-teachers" title="Parents &amp; Teachers">Parents &amp; Teachers</a></li>
+<li class="collapsed"><a href="/only-bpl" title="Only at BPL">Only at BPL</a></li>
+<li class="collapsed"><a href="http://catalog.brooklynpubliclibrary.org/iii/calendar/" title="">Events Calendar</a></li>
+<li class="collapsed"><a href="/support" title="
+">Support Your Library</a></li>
+<li class="expanded active-trail"><a href="/about" title="About BPL">About BPL</a><ul class="menu"><li class="leaf first"><a href="/about/annual-report" title="Annual Report">Annual Report</a></li>
+<li class="leaf active-trail"><a href="/locations" class="active">Hours and Locations</a></li>
+<li class="leaf"><a href="/about/bpl-history" title="BPL History">BPL History</a></li>
+<li class="leaf"><a href="/about/board-trustees" title="Board of Trustees">Board of Trustees</a></li>
+<li class="leaf"><a href="/borrowing-materials" title="Borrowing Materials">Borrowing Materials</a></li>
+<li class="leaf"><a href="/about/carnegie" title="Carnegie Libraries">Carnegie Libraries</a></li>
+<li class="leaf"><a href="/about/community-partners" title="Community Partners">Community Partners</a></li>
+<li class="leaf"><a href="/about/financials" title="Financials">Financials</a></li>
+<li class="leaf"><a href="/about/mission-and-vision" title="Mission and Vision">Mission and Vision</a></li>
+<li class="leaf"><a href="/about/president-ceo" title="Our Interim Executive Director">President &amp; CEO</a></li>
+<li class="leaf"><a href="/media" title="Press Room">Media Room</a></li>
+<li class="collapsed"><a href="/policy" title="Library Policies">Library Policies</a></li>
+<li class="leaf"><a href="/about/every-brooklynite-can-start-here" title="">Strategic Plan</a></li>
+<li class="leaf last"><a href="/about/welcome-bpl" title="Welcome to BPL">Welcome to BPL</a></li>
+</ul></li>
+<li class="collapsed last"><a href="/jobs-business" title="Job &amp; Business Information">Jobs &amp; Business Information</a></li>
+</ul>  </div>
+
+  </div> <!-- /.block -->
+<div id="block-menu-menu-foreign-language" class="block block-menu region-even even region-count-2 count-2">
+  
+  <div class="content">
+    <ul class="menu"><li class="leaf first"><a href="/es" title="Recursos en Español">Español</a></li>
+<li class="leaf"><a href="/ru" title="">Pусский</a></li>
+<li class="leaf"><a href="/fr" title="">Français</a></li>
+<li class="leaf last"><a href="/zh" title="中文資料">中文資料</a></li>
+</ul>  </div>
+
+  </div> <!-- /.block -->
+<div id="block-block-5" class="block block-block last region-odd odd region-count-3 count-3">
+  
+  <div class="content">
+    <p style="margin-left:12px; margin-bottom:7px"><img alt="Mobile App" border="0" height="16" src="/sites/default/files/images/icon-app.png" style="float: left; margin: 2px 5px 0 0;" width="16" /><a href="/my-bpl-mobile-apps" title="Download our Mobile App for your Apple or Android device.">Download our Mobile App</a></p>
+<p style="margin-left:12px"><img alt="eNewsletter" border="0" height="12" src="/sites/default/files/images/icon-email.png" style="float: left; margin: 4px 5px 0 0;" width="16" /><a href="/events/enewsletter/" title="Learn about events, ways to support your library, recommended reads and more when you sign up for our eNewsletter">Subscribe to BPL eNews</a></p>
+  </div>
+
+  </div> <!-- /.block -->
+</div></div><!-- /.section, /.region -->
+      
+	  
+      
+
+    </div></div> <!-- /#main, /#main-wrapper -->
+
+          <div id="footer"><div class="section">
+
+
+
+<!--                   <div id="footer-message"></div>
+         -->
+
+        <div class="region region-footer">
+  <div id="block-menu-secondary-links" class="block block-menu first last region-odd even region-count-1 count-4">
+  
+  <div class="content">
+    <ul class="menu"><li class="leaf first"><a href="/" title="
+">Home</a></li>
+<li class="leaf"><a href="http://misc.brooklynpubliclibrary.org/questionpoint/write_us.aspx" title="
+">Contact Us</a></li>
+<li class="leaf"><a href="/support" title="">Donate</a></li>
+<li class="leaf"><a href="/jobs-business/jobs" title="">BPL Jobs</a></li>
+<li class="leaf"><a href="/support/volunteer" title="">Volunteer</a></li>
+<li class="leaf"><a href="/policy" title="">Library Policies</a></li>
+<li class="leaf"><a href="/media" title="">Media Room</a></li>
+<li class="leaf"><a href="/wireless" title="Learn how to connect to BPL&#039;s Wi-Fi network.">Wireless</a></li>
+<li class="leaf"><a href="/rss" title="">RSS</a></li>
+<li class="leaf last"><a href="http://m.brooklynpubliclibrary.org/" title="">BPL Mobile (beta)</a></li>
+</ul>  </div>
+
+  </div> <!-- /.block -->
+</div><!-- /.region -->
+		&#169; 2014 Brooklyn Public Library 
+      </div></div> <!-- /.section, /#footer -->
+    
+  </div></div> <!-- /#page, /#page-wrapper -->
+
+  
+  <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-27105001-1"]);_gaq.push(["_setDomainName", "www.bklynlibrary.org"]);_gaq.push(['_setAllowLinker', true]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+
+    <script type="text/javascript">
+       var codemirror_rootpath = '/sites/all/modules/ckeditor/plugins/';
+    </script>
+	
+</body>
+</html>

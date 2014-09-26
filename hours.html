@@ -1,0 +1,29 @@
+<html>
+	<script src="libraries.json"></script>
+	<script src="hours.json"></script>
+<!--
+
+For mapping hours to locations?
+
+-->
+	<script>
+	window.onload = function() {
+		function tokenize(text) {
+			return text.split(" ")[0]
+		}
+		locations.forEach(function(location,i) {
+			var found = false;
+
+			for (var name in hours) {
+				if (new RegExp(tokenize(name)).test(location.name)) {
+					locations[i].hours = hours[name];
+				}
+			}
+			if (found === true) {
+				// console.log(location.name)
+			}
+		})
+		console.log(JSON.stringify(locations))
+	}
+	</script>
+</html>

@@ -1,0 +1,133 @@
+h1, h2, h3, h4 {
+  font-family: 'Codystar', cursive;
+  font-weight: bold;
+  color:red;
+}
+body {
+	background: white;
+	font-family: Helvetica Neue;
+	padding:0 0 1em 250px;
+}
+ul {
+  margin:0;
+  padding:0;
+  list-style: none;
+}
+li {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin:0;
+  padding:0;
+  padding: 0 30px 0 0;
+  box-sizing: border-box;
+  position: relative;
+}
+ul:empty:after {
+	content:'Books will appear here';
+	color:lightgray;
+}
+p:empty:after {
+	content:'Nearest book will appear here';
+	color: lightgray;
+}
+p:empty:before {
+	display: inline-block;
+	color: white;
+	content:"\200B";
+  width: 20px;
+  height: 20px;
+  margin:0 10px 0 0;
+  background-color: lightblue;
+
+  -webkit-animation: rotateplane 1.2s infinite ease-in-out;
+  animation: rotateplane 1.2s infinite ease-in-out;
+}
+
+@-webkit-keyframes rotateplane {
+  0% { -webkit-transform: perspective(120px) }
+  50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+}
+
+@keyframes rotateplane {
+  0% { 
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg) 
+  } 50% { 
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg) 
+  } 100% { 
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
+}
+
+.call {
+	font-family: monospace;
+}
+.away, .call {
+	color: lightgray;
+}
+#sidebar {
+	width:200px;
+	position: absolute;
+	top:1em;
+	left:1em;
+}
+#sidebar p {
+  max-width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-wrap: break-word;
+  font-size: 14px;
+  color: gray;
+}
+.book-remove {
+  cursor: pointer;
+  margin-left: 0.5em;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+p .call {
+  color:black;
+}
+/* typeahead */
+.tt-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  list-style: none;
+  font-size: 14px;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  background-clip: padding-box;
+}
+.tt-suggestion > p {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.428571429;
+  color: #333333;
+  white-space: nowrap;
+}
+.tt-suggestion > p:hover,
+.tt-suggestion > p:focus,
+.tt-suggestion.tt-cursor p {
+  color: #ffffff;
+  text-decoration: none;
+  outline: 0;
+  background-color: #428bca;
+}	

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
+	<script src="http://code.jquery.com/jquery-2.1.1.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="typeahead.bundle.js"></script>
+	<script src="branches.json"></script>
+	<script src="script.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Codystar' rel='stylesheet' type='text/css'>
+</head>
+<body>
+	<div id="sidebar">
+	<form class="form-inline" id="add" role="form">
+		<div class="form-group">
+		<label class="sr-only" for="add_to_queue">
+			Add to queue:
+		</label>
+		<input id="add_to_queue" class="form-control typeahead" type="text" placeholder="Type to add books">
+		</div>
+		<hr>
+		<p class='text-muted'>Search by book name or author (e.g. "Tony Judt")</p>
+		<p class='text-muted'>Or enter a Brooklyn Public Library book page (e.g. "http://brooklyn.bibliocommons.com/item/show/11238058062906_postwar")</p>
+	</form>
+	<hr/>
+	<h4>Your book queue:</h4>
+	<ul id="queue"></ul>
+	<hr>
+	<h4>About</h4>
+	<p>Free, nearby books available right now at the Brooklyn Public Library.  No "estimated shipping", batteries, or $$$.</p>
+	<p>Location permissions required.</p>
+	<p>- <a href="mailto:jeff+library@bigboy.us">Jeff</a></p>
+	</div>
+	<h1>Nearest book right now:</h1>
+	<p id="result"></p>
+	<div id="map"></div>
+	<hr/>
+	<h2>Other books nearby:</h2>
+	<ul id="results_nearby"></ul>
+	<h2>Other books available in the future:</h2>
+	<ul id="results_soon"></ul>
+</body>
+</html>
